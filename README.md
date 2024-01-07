@@ -6,6 +6,7 @@ API’s HTTP Requests são “links” que respondem a solicitação realizando 
 
  Tabela de relação
 
+| sigla | significado | operação |
 | C | Create | POST |
 | --- | --- | --- |
 | R | Read | GET |
