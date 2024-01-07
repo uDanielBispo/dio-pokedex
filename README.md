@@ -1,4 +1,6 @@
-# HTTP Requests
+#Pokedex
+
+Preview: https://udanielbispo.github.io/dio-pokedex/
 
 API’s HTTP Requests são “links” que respondem a solicitação realizando um CRUD que é representado dessa forma
 
