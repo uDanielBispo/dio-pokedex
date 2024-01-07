@@ -3,10 +3,12 @@ const pokeApi = {};
 function convertPokeApiDetailToPokemon(pokeDetail){
     const pokemon = new Pokemon();
     pokemon.name = pokeDetail.name;
-    pokemon.num = pokeDetail.order;
+    pokemon.num = pokeDetail.id;
     
     const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name);
     const [type] = types;
+
+    pokemon.mainType = type;
 
     pokemon.types = types;
     pokemon.img = pokeDetail.sprites.other.dream_world.front_default;
