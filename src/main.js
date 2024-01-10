@@ -1,9 +1,15 @@
 const pokemonListHtml = document.getElementById('pokemonList');
 const loadMoreButton = document.getElementById('loadMoreButton');
+const pokedex = document.getElementById('pokedex');
+const detailSection = document.getElementById('detailSection');
+const backLink = document.getElementById('backLink');
+
+detailSection.style.display = 'none';
+backLink.style.display = 'none';
 
 const maxRecords= 151;
-
 const limit = 5;
+
 let offset = 0;
 
 loadMoreButton.addEventListener('click', () => {
@@ -24,7 +30,7 @@ loadMoreButton.addEventListener('click', () => {
 })
 
 function convertPokemonToHTML(pokemon){
-    return `<li class='${pokemon.mainType}'>
+    return `<li onclick="showDetail(${pokemon.num-1})" class='${pokemon.mainType}'>
         <span class="number">#${pokemon.num}</span>
         <span class="name">${pokemon.name}</span>
         <div class="detail">
@@ -36,18 +42,44 @@ function convertPokemonToHTML(pokemon){
     </li>`
 }
 
+function convertToHTMLDetail(pokemon){
+    return `
+        <div class="${pokemon.mainType} pokeInfoGeneral" >
+            <h2 class="pokeName">${pokemon.name}</h2>
+            <img class="pokeImg" src="${pokemon.img}" alt="">
+            <h3>Index number #${pokemon.num}</h3>
+            <div class="pokeInfos">
+                <div>
+                    <h3>Abilities</h3>
+                    <ol class="abilities">
+                        ${pokemon.abilities.map((ability) =>  `<li class="${pokemon.mainType}" >${ability.ability.name}</li>`).join('')}
+                    </ol>
+                </div>
+                <div>
+                    <h3>Moves</h3>
+                    <ol>
+                        ${pokemon.moves.map((moves) =>  `<li class="${pokemon.mainType}" >${moves.move.name}</li>`).join('')}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    `
+}
+
 loadPokemonItens(offset, limit);
+
 function loadPokemonItens(offset, limit){
     pokeApi.getPokemons(offset, limit).then((pokemonList = []) =>{
-        //const listItems = pokemonList.map((pokemon) => convertPokemonToHTML(pokemon));
-        //iguais 
-        //const listItems = pokemonList.map(convertPokemonToHTML);
-        // for(let i = 0; i < pokemonList.length; i++){
-        //     const pokemon = pokemonList[i];
-        // }
-    
         pokemonListHtml.innerHTML += pokemonList.map(convertPokemonToHTML).join('');
     })
 }
 
+function showDetail(pokeNum){
+    pokeApi.getPokemons(pokeNum, 1).then((pokemonList = []) => {
+        detailSection.innerHTML = pokemonList.map(convertToHTMLDetail);
+    })
+    pokedex.style.display = 'none';
+    detailSection.style.display = 'block';
+    backLink.style.display = 'block';
 
+}

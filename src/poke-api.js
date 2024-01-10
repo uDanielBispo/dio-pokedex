@@ -1,5 +1,11 @@
 const pokeApi = {};
 
+function convertPokeApiDetailToFullDetailPokemon(pokeDetail){
+    let pokemon = convertPokeApiDetailToPokemon(pokeDetail);
+
+
+}
+
 function convertPokeApiDetailToPokemon(pokeDetail){
     const pokemon = new Pokemon();
     pokemon.name = pokeDetail.name;
@@ -12,6 +18,10 @@ function convertPokeApiDetailToPokemon(pokeDetail){
 
     pokemon.types = types;
     pokemon.img = pokeDetail.sprites.other.dream_world.front_default;
+
+    pokemon.abilities = pokeDetail.abilities;
+    pokemon.moves = pokeDetail.moves;
+    
 
     return pokemon;
 }
@@ -34,3 +44,4 @@ pokeApi.getPokemons = (offset = 0, limit = 10) => {
     .then((detailRequests) => Promise.all(detailRequests))
     .then((pokemonDetails) => pokemonDetails)
 }
+

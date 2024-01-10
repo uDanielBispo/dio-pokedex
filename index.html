@@ -9,17 +9,42 @@
     crossorigin="anonymous" 
     referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/style/global.css">
+    <link rel="stylesheet" href="assets/style/pokeDetail.css">
+
     <title>Pokedex</title>
 </head>
 <body>
     <section class="content">
         <h1>Pokedex</h1>
-        <ol id="pokemonList" class="pokemons">
-        </ol>
 
-        <div class="pagination">
-            <button id="loadMoreButton" type="button">Load more</button>
-        </div>
+        <a id="backLink" href="/">Back</a>
+
+        <section class="pokedex" id="pokedex">
+            <ol id="pokemonList" class="pokemons">
+            </ol>
+            
+            <div class="pagination">
+                <button id="loadMoreButton" type="button">Load more</button>
+            </div>
+        </section>
+
+        <section id="detailSection" class="detailSection" >
+            <div class="normal pokeInfoGeneral">
+                <h2 class="pokeName">Bulbasur</h2>
+                <img class="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png" alt="">
+                
+                <div class="pokeInfos">
+                    <ol>
+                        <li class="normal ability">Ability1</li>
+                        <li class="normal ability">Ability2</li>
+                    </ol>
+                    <ol>
+                        <li class="normal moves" >Moves1</li>
+                        <li class="normal moves">Moves2</li>
+                    </ol>
+                </div>
+            </div>
+        </section>    
     </section>
 
     <script src="./src/pokemon-model.js"></script>
