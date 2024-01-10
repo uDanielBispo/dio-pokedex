@@ -26,7 +26,12 @@ https://pokeapi.co/api/v2/pokemon?type=1
 São configurações da solicitação, indica o que aceita na resposta:
 
 ```bash
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept:
+	text/html,
+	application/xhtml+xml,
+	application/xml;q=0.9,
+	image/webp,image/apng,
+	*/*;
 Accept-Encoding: gzip, deflate, br
 Accept-Language: pt-BR,pt;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
 ```
